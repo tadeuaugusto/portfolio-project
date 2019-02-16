@@ -23,10 +23,10 @@
       <h1 class="jumbotron-heading">Job Detail</h1>
       <p class="lead text-muted">{{ job.summary }}</p>
 
-      <img src="{% static 'photo.jpg' %}" height="300"></img>
+      <img src="{{ job.image.url }}" height="300"></img>
       <p>
             <a href="{% url 'home' %}" class="btn btn-primary my-2">Back</a>
-          </p>
+      </p>
     </div>
   </section>
 
@@ -38,12 +38,14 @@
         {% for job in jobs.all %}
 
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}">
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
+            <a href="{% url 'detail' job.id %}">
+                <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top" src="{{ job.image.url }}">
+                    <div class="card-body">
+                    <p class="card-text">{{ job.summary }}</p>
+                    </div>
+                </div>
+            </a>
         </div>
 
         {% endfor %}
